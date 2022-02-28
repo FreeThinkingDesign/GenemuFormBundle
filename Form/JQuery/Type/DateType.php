@@ -36,7 +36,7 @@ class DateType extends AbstractType
     {
         $this->options = $options;
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -116,6 +116,14 @@ class DateType extends AbstractType
     {
         return 'genemu_jquerydate';
     }
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
+    {
+        return 'genemu_jquerydate';
+    }
+
 
     /**
      * Create pattern Date Javascript

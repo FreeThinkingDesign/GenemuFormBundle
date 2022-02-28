@@ -107,4 +107,11 @@ class ImageType extends AbstractType
     {
         return 'genemu_jqueryimage';
     }
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
+    {
+        return 'genemu_jqueryimage';
+    }
 }

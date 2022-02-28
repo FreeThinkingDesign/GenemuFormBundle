@@ -103,4 +103,11 @@ class GeolocationType extends AbstractType
     {
         return 'genemu_jquerygeolocation';
     }
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
+    {
+        return 'genemu_jquerygeolocation';
+    }
 }

@@ -150,4 +150,12 @@ class TokeninputType extends AbstractType
     {
         return 'genemu_jquerytokeninput_' . $this->widget;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
+    {
+        return 'genemu_jquerytokeninput_' . $this->widget;
+    }
 }

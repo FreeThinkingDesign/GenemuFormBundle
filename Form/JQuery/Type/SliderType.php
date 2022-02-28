@@ -63,4 +63,12 @@ class SliderType extends AbstractType
     {
         return 'genemu_jqueryslider';
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
+    {
+        return 'genemu_jqueryslider';
+    }
 }

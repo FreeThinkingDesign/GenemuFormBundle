@@ -113,4 +113,11 @@ class FileType extends AbstractType
     {
         return 'genemu_jqueryfile';
     }
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
+    {
+        return 'genemu_jqueryfile';
+    }
 }

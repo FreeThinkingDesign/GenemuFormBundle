@@ -67,4 +67,12 @@ class ColorType extends AbstractType
     {
         return 'genemu_jquerycolor';
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
+    {
+        return 'genemu_jquerycolor';
+    }
 }

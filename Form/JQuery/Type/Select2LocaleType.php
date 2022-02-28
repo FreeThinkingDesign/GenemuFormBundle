@@ -14,22 +14,23 @@ namespace Genemu\Bundle\FormBundle\Form\JQuery\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\Options;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * ChosenType to JQueryLib
+ * Select2LocaleType to JQueryLib
  *
- * @author Olivier Chauvel <olivier@generation-multiple.com>
  * @author Bilal Amarni <bilal.amarni@gmail.com>
+ * @author Chris Tickner <chris.tickner@gmail.com>
+ * @author Benjamin Schumacher <benschumi@hotmail.fr>
  */
-class ChosenType extends AbstractType
+class Select2LocaleType extends AbstractType
 {
-    private $widget;
+    private $configs;
 
-    public function __construct($widget)
+    public function __construct(array $configs = array())
     {
-        $this->widget = $widget;
+        $this->configs = $configs;
     }
 
     /**
@@ -37,35 +38,34 @@ class ChosenType extends AbstractType
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars['no_results_text'] = $options['no_results_text'];
-        $view->vars['allow_single_deselect'] = $options['allow_single_deselect'];
-        $view->vars['disable_search_threshold'] = $options['disable_search_threshold'];
+        $view->vars['configs'] = $options['configs'];
 
         // Adds a custom block prefix
         array_splice(
             $view->vars['block_prefixes'],
             array_search($this->getName(), $view->vars['block_prefixes']),
             0,
-            'genemu_jquerychosen'
+            'genemu_jqueryselect2'
         );
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
+        $defaults = $this->configs;
         $resolver
             ->setDefaults(array(
-                'no_results_text' => '',
-                'allow_single_deselect' => true,
-                'disable_search_threshold' => 0
+                'configs'       => $defaults,
+                'transformer'   => null,
             ))
-            ->setNormalizers(array(
-                'expanded' => function (Options $options) {
-                    return false;
+            ->setNormalizer(
+                'configs',
+                function (Options $options, $configs) use ($defaults) {
+                    return array_merge($defaults, $configs);
                 }
-            ))
+            )
         ;
     }
 
@@ -74,15 +74,7 @@ class ChosenType extends AbstractType
      */
     public function getParent()
     {
-        return $this->widget;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return 'genemu_jquerychosen_' . $this->widget;
+        return 'Symfony\Component\Form\Extension\Core\Type\LocaleType';
     }
 
     /**
@@ -90,6 +82,6 @@ class ChosenType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'genemu_jquerychosen_' . $this->widget;
+        return 'genemu_jqueryselect2';
     }
 }
