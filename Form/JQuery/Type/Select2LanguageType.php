@@ -84,4 +84,12 @@ class Select2LanguageType extends AbstractType
     {
         return 'genemu_jqueryselect2';
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getName()
+    {
+        return 'genemu_jqueryselect2';
+    }
 }
