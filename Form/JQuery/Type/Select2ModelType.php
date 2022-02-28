@@ -82,7 +82,7 @@ class Select2ModelType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'genemu_jqueryselect2';
+        return 'genemu_jqueryselect2_model';
     }
 
     /**
@@ -90,6 +90,6 @@ class Select2ModelType extends AbstractType
      */
     public function getName()
     {
-        return 'genemu_jqueryselect2';
+        return 'genemu_jqueryselect2_model';
     }
 }
